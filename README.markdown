@@ -1,7 +1,7 @@
 Opsworks Deployer - deploppy
 ---------------------
 
-de command
+Deployment Commands
 --------------
 ```bash
 # Run a basic deploy for the current app
@@ -20,10 +20,10 @@ deploppy update_custom_cookbooks staging
 deploppy setup staging
 ````
 
-Setup and app to use deploppy
+Setup and Application to use deploppy
 -------
 ```yaml
-# deploppy.yml
+# your_app_root/.deploppy
 
 staging:
   stack_id: opsworks-stack-id

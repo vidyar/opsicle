@@ -1,29 +1,29 @@
-Opsworks Deployer - deploppy
+Opsworks CLI - opstwerk
 ---------------------
 
 Deployment Commands
 --------------
 ```bash
 # Run a basic deploy for the current app
-deploppy staging
+opstwerk deploy staging
 
 # Run the deploy for production
-deploppy production
+opstwerk deploy production
 
 ```
 
 ```bash
 # Run other opsworks commands
-deploppy update_custom_cookbooks staging
+opstwerk update_custom_cookbooks staging
 
 # Trigger the setup event
-deploppy setup staging
+opstwerk setup staging
 ````
 
 Setup and Application to use deploppy
 -------
 ```yaml
-# your_app_root/.deploppy
+# your_app_root/.opstwerk
 
 staging:
   stack_id: opsworks-stack-id

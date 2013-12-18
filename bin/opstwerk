@@ -1,0 +1,19 @@
+#!/usr/bin/env ruby
+require 'rubygems'
+require 'commander/import'
+require 'opstwerk'
+
+# :name is optional, otherwise uses the basename of this executable
+program :name, 'Opstwerk'
+program :version, Opstwerk::VERSION
+program :description, 'Opsworks Command Line Utility Belt'
+default_command :help
+
+command :deploy do |c|
+  c.syntax = "opstwerk deploy <environment>"
+  c.description = "Deploy Your current app to the given Opswork Stack"
+  c.action do |args, options|
+    raise ArgumentError, "Environment is required" unless args.first
+    Opstwerk::Deploy.new(args.first).execute
+  end
+end

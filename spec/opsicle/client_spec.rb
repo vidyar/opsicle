@@ -1,7 +1,7 @@
 require "spec_helper"
-require "opstwerk/client"
+require "opsicle/client"
 
-module Opstwerk
+module Opsicle
   describe Client do
     subject { Client.new('derp') }
     let(:aws_client) { double }

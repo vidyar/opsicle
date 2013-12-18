@@ -1,7 +1,7 @@
 require 'aws-sdk'
 require_relative 'client'
 
-module Opstwerk
+module Opsicle
   class Deploy
     attr_reader :client
 

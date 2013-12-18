@@ -1,7 +1,7 @@
 require "spec_helper"
-require "opstwerk/deploy"
+require "opsicle/deploy"
 
-module Opstwerk
+module Opsicle
   describe Deploy do
     subject { Deploy.new('derp') }
 

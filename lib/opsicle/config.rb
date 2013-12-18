@@ -1,6 +1,6 @@
 require 'yaml'
 
-module Opstwerk
+module Opsicle
   class Config
     attr_reader :environment
 
@@ -15,7 +15,7 @@ module Opstwerk
     end
 
     def opsworks_config
-      @opsworks_config ||= load_config('./.opstwerk')
+      @opsworks_config ||= load_config('./.opsicle')
     end
 
     def configure_aws!

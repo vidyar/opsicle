@@ -1,11 +1,11 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'opstwerk/version'
+require 'opsicle/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "opstwerk"
-  spec.version       = Opstwerk::VERSION
+  spec.name          = "opsicle"
+  spec.version       = Opsicle::VERSION
   spec.authors       = ["Andy Fleener"]
   spec.email         = ["andrew.fleener@sportngin.com"]
   spec.description   = %q{CLI for the opsworks platform}

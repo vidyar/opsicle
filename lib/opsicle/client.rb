@@ -1,6 +1,6 @@
-require 'opstwerk/config'
+require 'opsicle/config'
 
-module Opstwerk
+module Opsicle
   class Client
     attr_reader :aws_client
     attr_reader :config

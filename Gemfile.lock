@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    opstwerk (0.0.1)
+    opsicle (0.0.1)
       aws-sdk
       commander
 
@@ -68,6 +68,6 @@ DEPENDENCIES
   bundler (~> 1.3)
   guard
   guard-rspec
-  opstwerk!
+  opsicle!
   rake
   rspec

@@ -1,11 +1,11 @@
 require "spec_helper"
-require "opstwerk/config"
-module Opstwerk
+require "opsicle/config"
+module Opsicle
   describe Config do
     subject { Config.new('derp') }
      before do
        YAML.stub(:load_file).with(File.expand_path '~/.fog').and_return({'derp' => { 'aws_access_key_id' => 'key', 'aws_secret_access_key' => 'secret'}})
-       YAML.stub(:load_file).with('./.opstwerk').and_return({'derp' => { 'app_id' => 'app', 'stack_id' => 'stack'}})
+       YAML.stub(:load_file).with('./.opsicle').and_return({'derp' => { 'app_id' => 'app', 'stack_id' => 'stack'}})
      end
 
     context "#aws_config" do

@@ -15,6 +15,10 @@ module Opsicle
       aws_client.create_deployment(command_options(command, options))
     end
 
+    def api_call(command, options={})
+      aws_client.send(command, options)
+    end
+
     def command_options(command, options={})
       config.opsworks_config.merge(options).merge({ command: { name: command } })
     end

@@ -10,7 +10,16 @@ module Opstwerk
     end
 
     def execute
-      client.run_command('deploy')
+      response = client.run_command('deploy')
+      open_deploy(response[:deployment_id])
+    end
+
+    def open_deploy(deployment_id)
+      if deployment_id
+        exec "open 'https://console.aws.amazon.com/opsworks/home?#/stack/#{client.config.opsworks_config[:stack_id]}/deployments/#{deployment_id}'"
+      else
+        puts 'deploy failed'
+      end
     end
   end
 end

@@ -12,7 +12,8 @@ module Opstwerk
       end
 
       it "creates a new deployment" do
-        client.should_receive(:run_command).with('deploy')
+        subject.should_receive(:open_deploy).with('derp')
+        client.should_receive(:run_command).with('deploy').and_return({deployment_id: 'derp'})
         subject.execute
       end
     end

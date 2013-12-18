@@ -1,3 +1,5 @@
+require 'opstwerk/config'
+
 module Opstwerk
   class Client
     attr_reader :aws_client

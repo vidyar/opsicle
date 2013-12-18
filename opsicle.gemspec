@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["andrew.fleener@sportngin.com"]
   spec.description   = %q{CLI for the opsworks platform}
   spec.summary       = %q{An opsworks specific abstraction on top of the aws sdk}
-  spec.homepage      = ""
+  spec.homepage      = "https://github.com/sportngin/opsicle"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)

@@ -4,8 +4,8 @@ module Opstwerk
   describe Config do
     subject { Config.new('derp') }
      before do
-       YAML.stub(:load_file).with('~/.fog').and_return({'derp' => { 'access_key_id' => 'key', 'secret_access_key' => 'secret'}})
-       YAML.stub(:load_file).with('.opstwerk').and_return({'derp' => { 'app_id' => 'app', 'stack_id' => 'stack'}})
+       YAML.stub(:load_file).with(File.expand_path '~/.fog').and_return({'derp' => { 'aws_access_key_id' => 'key', 'aws_secret_access_key' => 'secret'}})
+       YAML.stub(:load_file).with('./.opstwerk').and_return({'derp' => { 'app_id' => 'app', 'stack_id' => 'stack'}})
      end
 
     context "#aws_config" do

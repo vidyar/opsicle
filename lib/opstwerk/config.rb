@@ -12,6 +12,10 @@ module Opstwerk
       load_config('~/.fog')
     end
 
+    def opsworks_config
+      load_config('.opstwerk')
+    end
+
     def configure_aws!
       AWS.config(aws_config)
     end

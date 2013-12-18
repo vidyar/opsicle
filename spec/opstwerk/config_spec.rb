@@ -5,6 +5,7 @@ module Opstwerk
     subject { Config.new('derp') }
      before do
        YAML.stub(:load_file).with('~/.fog').and_return({'derp' => { 'access_key_id' => 'key', 'secret_access_key' => 'secret'}})
+       YAML.stub(:load_file).with('.opstwerk').and_return({'derp' => { 'app_id' => 'app', 'stack_id' => 'stack'}})
      end
 
     context "#aws_config" do
@@ -14,6 +15,16 @@ module Opstwerk
 
       it "should contain secret_access_key" do
         subject.aws_config.should have_key(:secret_access_key)
+      end
+    end
+
+    context "#opsworks_config" do
+      it "should contain stack_id" do
+        subject.opsworks_config.should have_key(:stack_id)
+      end
+
+      it "should contain app_id" do
+        subject.opsworks_config.should have_key(:app_id)
       end
     end
 

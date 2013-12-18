@@ -10,7 +10,7 @@ module Opstwerk
     end
 
     def execute
-      client.create_deployment(command: { name: 'deploy' })
+      client.run_command('deploy')
     end
   end
 end

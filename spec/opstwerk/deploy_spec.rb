@@ -12,7 +12,7 @@ module Opstwerk
       end
 
       it "creates a new deployment" do
-        client.should_receive(:create_deployment).with(hash_including(command: { name: 'deploy' }))
+        client.should_receive(:run_command).with('deploy')
         subject.execute
       end
     end

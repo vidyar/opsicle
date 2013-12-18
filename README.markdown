@@ -20,7 +20,7 @@ opsicle update_custom_cookbooks staging
 opsicle setup staging
 ````
 
-Setup and Application to use deploppy
+Setup and Application to use opsicle
 -------
 ```yaml
 # your_app_root/.opsicle

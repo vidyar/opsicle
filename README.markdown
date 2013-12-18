@@ -27,8 +27,10 @@ Setup an Application to use opsicle
 
 staging:
   stack_id: opsworks-stack-id
+  app_id: opsworks-app-id
 production:
   stack_id: opsworks-stack-id
+  app_id: opsworks-app-id
 ```
 
 ```yaml

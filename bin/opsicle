@@ -14,6 +14,6 @@ command :deploy do |c|
   c.description = "Deploy Your current app to the given Opswork Stack"
   c.action do |args, options|
     raise ArgumentError, "Environment is required" unless args.first
-    opsicle::Deploy.new(args.first).execute
+    Opsicle::Deploy.new(args.first).execute
   end
 end

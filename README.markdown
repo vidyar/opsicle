@@ -1,29 +1,29 @@
-Opsworks CLI - opstwerk
+Opsworks CLI - opsicle
 ---------------------
 
 Deployment Commands
 --------------
 ```bash
 # Run a basic deploy for the current app
-opstwerk deploy staging
+opsicle deploy staging
 
 # Run the deploy for production
-opstwerk deploy production
+opsicle deploy production
 
 ```
 
 ```bash
 # Run other opsworks commands
-opstwerk update_custom_cookbooks staging
+opsicle update_custom_cookbooks staging
 
 # Trigger the setup event
-opstwerk setup staging
+opsicle setup staging
 ````
 
 Setup and Application to use deploppy
 -------
 ```yaml
-# your_app_root/.opstwerk
+# your_app_root/.opsicle
 
 staging:
   stack_id: opsworks-stack-id
@@ -39,7 +39,7 @@ staging:
   aws_secret_access_key: YOUR_AWS_SECRET_ACCESS_KEY
 production:
   aws_access_key_id: YOUR_AWS_ACCESS_KEY
-  aws_secret_access_key: YOUR_AWS_SECRET_ACCESS_KEY  
+  aws_secret_access_key: YOUR_AWS_SECRET_ACCESS_KEY
 ```
 
 

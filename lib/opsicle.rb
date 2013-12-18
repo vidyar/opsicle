@@ -1,5 +1,3 @@
 require "opsicle/version"
+require "opsicle/deploy"
 
-module Opsicle
-  # Your code goes here...
-end

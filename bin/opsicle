@@ -1,0 +1,19 @@
+#!/usr/bin/env ruby
+require 'rubygems'
+require 'commander/import'
+require 'opsicle'
+
+# :name is optional, otherwise uses the basename of this executable
+program :name, 'opsicle'
+program :version, Opsicle::VERSION
+program :description, 'Opsworks Command Line Utility Belt'
+default_command :help
+
+command :deploy do |c|
+  c.syntax = "opsicle deploy <environment>"
+  c.description = "Deploy Your current app to the given Opswork Stack"
+  c.action do |args, options|
+    raise ArgumentError, "Environment is required" unless args.first
+    Opsicle::Deploy.new(args.first).execute
+  end
+end

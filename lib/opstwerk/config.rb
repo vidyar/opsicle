@@ -9,11 +9,13 @@ module Opstwerk
     end
 
     def aws_config
-      load_config('~/.fog')
+      return @aws_config if @aws_config
+      fog_confg = load_config(File.expand_path('~/.fog'))
+      @aws_config = { access_key_id: fog_confg[:aws_access_key_id], secret_access_key: fog_confg[:aws_secret_access_key] }
     end
 
     def opsworks_config
-      load_config('.opstwerk')
+      @opsworks_config ||= load_config('./.opstwerk')
     end
 
     def configure_aws!

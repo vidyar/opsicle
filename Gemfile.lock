@@ -2,7 +2,7 @@ PATH
   remote: .
   specs:
     opsicle (0.0.2)
-      aws-sdk
+      aws-sdk (~> 1.30)
       commander
       terminal-table
 

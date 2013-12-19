@@ -29,7 +29,7 @@ module Opsicle
     end
 
     def print(apps)
-      puts Terminal::Table.new :headings => ['Name', 'Stack Id', 'App Id'], rows: app_data(apps)
+      puts Terminal::Table.new headings: ['Name', 'Stack Id', 'App Id'], rows: app_data(apps)
     end
 
     def app_data(apps)

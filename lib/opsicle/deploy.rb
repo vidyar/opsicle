@@ -16,7 +16,7 @@ module Opsicle
 
     def open_deploy(deployment_id)
       if deployment_id
-        exec "open 'https://console.aws.amazon.com/opsworks/home?#/stack/#{client.config.opsworks_config[:stack_id]}/deployments/#{deployment_id}'"
+        exec "open 'https://console.aws.amazon.com/opsworks/home?#/stack/#{client.config.opsworks_config[:stack_id]}/deployments'"
       else
         puts 'deploy failed'
       end

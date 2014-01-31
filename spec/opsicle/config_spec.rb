@@ -47,13 +47,13 @@ module Opsicle
 
       context "#aws_config" do
         it "should gracefully raise an exception if no .fog file was found" do
-          expect {subject.aws_config}.to raise_exception
+          expect {subject.aws_config}.to raise_exception(Config::MissingConfig)
         end
       end
 
       context "#opsworks_config" do
         it "should gracefully raise an exception if no .fog file was found" do
-          expect {subject.opsworks_config}.to raise_exception
+          expect {subject.opsworks_config}.to raise_exception(Config::MissingConfig)
         end
       end
     end

@@ -7,6 +7,8 @@ require 'opsicle'
 program :name, 'opsicle'
 program :version, Opsicle::VERSION
 program :description, 'Opsworks Command Line Utility Belt'
+program :help, 'Documentation', 'For documentation and help in setting up your configuration files, '\
+                                'see Opsicle\'s GitHub repo: https://github.com/sportngin/opsicle'
 default_command :help
 
 command :deploy do |c|

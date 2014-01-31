@@ -4,6 +4,8 @@ module Opsicle
   describe Config do
     subject { Config.new('derp') }
      before do
+       File.stub(:exist?).with(File.expand_path '~/.fog').and_return(true)
+       File.stub(:exist?).with('./.opsicle').and_return(true)
        YAML.stub(:load_file).with(File.expand_path '~/.fog').and_return({'derp' => { 'aws_access_key_id' => 'key', 'aws_secret_access_key' => 'secret'}})
        YAML.stub(:load_file).with('./.opsicle').and_return({'derp' => { 'app_id' => 'app', 'stack_id' => 'stack'}})
      end

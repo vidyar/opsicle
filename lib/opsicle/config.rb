@@ -2,6 +2,10 @@ require 'yaml'
 
 module Opsicle
   class Config
+    FOG_CONFIG_PATH = '~/.fog'
+    OPSICLE_CONFIG_PATH = './.opsicle'
+
+
     attr_reader :environment
 
     def initialize(environment)
@@ -10,12 +14,12 @@ module Opsicle
 
     def aws_config
       return @aws_config if @aws_config
-      fog_confg = load_config(File.expand_path('~/.fog'))
+      fog_confg = load_config(File.expand_path(FOG_CONFIG_PATH))
       @aws_config = { access_key_id: fog_confg[:aws_access_key_id], secret_access_key: fog_confg[:aws_secret_access_key] }
     end
 
     def opsworks_config
-      @opsworks_config ||= load_config('./.opsicle')
+      @opsworks_config ||= load_config(OPSICLE_CONFIG_PATH)
     end
 
     def configure_aws!
@@ -23,6 +27,7 @@ module Opsicle
     end
 
     def load_config(file)
+      raise MissingConfig, "Missing configuration file: #{file}  See README for help" unless File.exist?(file)
       symbolize_keys(YAML.load_file(file))[environment] rescue {}
     end
 
@@ -42,5 +47,8 @@ module Opsicle
         result
       }
     end
+
+    MissingConfig = Class.new(StandardError)
+
   end
 end

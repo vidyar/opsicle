@@ -27,7 +27,7 @@ module Opsicle
     end
 
     def load_config(file)
-      raise MissingConfig, "Missing configuration file: #{file}  See README for help" unless File.exist?(file)
+      raise MissingConfig, "Missing configuration file: #{file}  Run 'opsicle help'" unless File.exist?(file)
       symbolize_keys(YAML.load_file(file))[environment] rescue {}
     end
 

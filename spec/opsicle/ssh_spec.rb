@@ -11,16 +11,29 @@ module Opsicle
     end
 
     context "#execute" do
-      it "should execute ssh with a selected Opsworks instance IP" do
+      before do
         subject.stub(:say) { "What instance do you want, huh?" }
+        subject.stub(:ask).and_return(2)
+        subject.stub(:ssh_username) {"mrderpyman2014"}
+      end
+
+      it "should execute ssh with a selected Opsworks instance IP" do
         subject.stub(:instances) {[
                                     { hostname: "host1", elastic_ip: "123.123.123.123" },
                                     { hostname: "host2", elastic_ip: "789.789.789.789" }
                                   ]}
-        subject.stub(:ask).and_return(2)
-        subject.stub(:ssh_username) {"mrderpyman2014"}
 
         subject.should_receive(:system).with("ssh mrderpyman2014@789.789.789.789")
+        subject.execute
+      end
+
+      it "should execute ssh right away if there is only one Opsworks instance available" do
+        subject.stub(:instances) {[
+                                    { hostname: "host3", elastic_ip: "456.456.456.456" }
+                                  ]}
+
+        subject.should_receive(:system).with("ssh mrderpyman2014@456.456.456.456")
+        subject.should_not_receive(:ask)
         subject.execute
       end
     end

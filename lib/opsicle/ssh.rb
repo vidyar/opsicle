@@ -14,8 +14,9 @@ module Opsicle
       instances.each_index do |x|
         say "#{x+1}) #{instances[x][:hostname]}"
       end
-      choice = ask "? "
+      choice = ask("? ", Integer) { |q| q.in = 1..instances.length }
 
+      puts instances[choice-1][:hostname]
     end
 
     def instances

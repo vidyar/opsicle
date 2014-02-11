@@ -18,12 +18,16 @@ module Opsicle
 
       instance_elastic_ip = instances[choice-1][:elastic_ip]
 
-      system("ssh #{instance_elastic_ip}")
+      system("ssh #{ssh_username}@#{instance_elastic_ip}")
     end
 
     def instances
       client.api_call(:describe_instances, { stack_id: client.config.opsworks_config[:stack_id] })
-            .data[:instances]
+        .data[:instances]
+    end
+
+    def ssh_username
+      client.api_call(:describe_my_user_profile)[:user_profile][:ssh_username]
     end
   end
 end

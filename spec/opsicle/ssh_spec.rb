@@ -4,13 +4,13 @@ require "opsicle/ssh"
 module Opsicle
   describe SSH do
     subject { SSH.new('derp') }
+    let(:client) { double(config: double(opsworks_config: {stack_id: "1234"})) }
+    let(:api_call) { double }
+    before do
+      Client.stub(:new).with('derp').and_return(client)
+    end
 
     context "#execute" do
-      let(:client) { double }
-      before do
-        Client.stub(:new).with('derp').and_return(client)
-      end
-
       it "should execute ssh with a selected Opsworks instance IP" do
         subject.stub(:say) { "What instance do you want, huh?" }
         subject.stub(:instances) {[
@@ -18,8 +18,9 @@ module Opsicle
                                     { hostname: "host2", elastic_ip: "789.789.789.789" }
                                   ]}
         subject.stub(:ask).and_return(2)
+        subject.stub(:ssh_username) {"mrderpyman2014"}
 
-        subject.should_receive(:system).with("ssh 789.789.789.789")
+        subject.should_receive(:system).with("ssh mrderpyman2014@789.789.789.789")
         subject.execute
       end
     end
@@ -32,17 +33,19 @@ module Opsicle
     end
 
     context "#instances" do
-      let(:client) { double(config: double(opsworks_config: {stack_id: "1234"})) }
-      let(:api_call) { double }
-      before do
-        Client.stub(:new).with('derp').and_return(client)
-      end
-
       it "makes a describe_instances API call" do
         client.stub(:api_call).with(:describe_instances, {stack_id: "1234"})
-                              .and_return(api_call)
+          .and_return(api_call)
         api_call.should_receive(:data).and_return(instances: {:foo => :bar})
         subject.instances.should == {:foo => :bar}
+      end
+    end
+
+    context "#ssh_username" do
+      it "makes a describe_my_user_profile API call" do
+        client.stub(:api_call).with(:describe_my_user_profile)
+          .and_return({user_profile: {:ssh_username => "captkirk01"}})
+        subject.ssh_username.should == "captkirk01"
       end
     end
 

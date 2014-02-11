@@ -1,0 +1,26 @@
+require 'aws-sdk'
+require_relative 'client'
+
+module Opsicle
+  class SSH
+    attr_reader :client
+
+    def initialize(environment)
+      @client = Client.new(environment)
+    end
+
+    def execute
+      say "Choose an Opsworks instance: \n"
+      instances.each_index do |x|
+        say "#{x+1}) #{instances[x][:hostname]}"
+      end
+      choice = ask "? "
+
+    end
+
+    def instances
+      client.api_call(:describe_instances, { stack_id: client.config.opsworks_config[:stack_id] })
+            .data[:instances]
+    end
+  end
+end

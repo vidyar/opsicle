@@ -33,7 +33,7 @@ command :ssh do |c|
   c.description = "SSH access to instances in the given Opsworks stack"
   c.action do |args, options|
     raise ArgumentError, "Environment is required" unless args.first
-    Opsicle.SSH.new(args.first).execute
+    Opsicle::SSH.new(args.first).execute
   end
 end
 

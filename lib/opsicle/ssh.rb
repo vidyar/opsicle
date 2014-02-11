@@ -16,7 +16,9 @@ module Opsicle
       end
       choice = ask("? ", Integer) { |q| q.in = 1..instances.length }
 
-      puts instances[choice-1][:hostname]
+      instance_elastic_ip = instances[choice-1][:elastic_ip]
+
+      system("ssh #{instance_elastic_ip}")
     end
 
     def instances

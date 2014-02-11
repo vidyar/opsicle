@@ -10,13 +10,17 @@ module Opsicle
     end
 
     def execute
-      say "Choose an Opsworks instance: \n"
-      instances.each_index do |x|
-        say "#{x+1}) #{instances[x][:hostname]}"
-      end
-      choice = ask("? ", Integer) { |q| q.in = 1..instances.length }
+      if instances.length == 1
+        instance_elastic_ip = instances[0][:elastic_ip]
+      else
+        say "Choose an Opsworks instance: \n"
+        instances.each_index do |x|
+          say "#{x+1}) #{instances[x][:hostname]}"
+        end
+        choice = ask("? ", Integer) { |q| q.in = 1..instances.length }
 
-      instance_elastic_ip = instances[choice-1][:elastic_ip]
+        instance_elastic_ip = instances[choice-1][:elastic_ip]
+      end
 
       system("ssh #{ssh_username}@#{instance_elastic_ip}")
     end

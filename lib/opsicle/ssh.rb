@@ -22,7 +22,9 @@ module Opsicle
         instance_elastic_ip = instances[choice-1][:elastic_ip]
       end
 
-      system("ssh #{ssh_username}@#{instance_elastic_ip}")
+      command = "ssh #{ssh_username}@#{instance_elastic_ip}"
+      say "<%= color('Executing shell command: #{command}', YELLOW) %>" if options.verbose
+      system(command)
     end
 
     def instances

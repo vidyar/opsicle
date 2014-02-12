@@ -28,7 +28,10 @@ module Opsicle
 
     def load_config(file)
       raise MissingConfig, "Missing configuration file: #{file}  Run 'opsicle help'" unless File.exist?(file)
-      symbolize_keys(YAML.load_file(file))[environment] rescue {}
+      env_config = symbolize_keys(YAML.load_file(file))[environment] rescue {}
+      raise MissingEnvironment, "Configuration for the \'#{environment}\' environment could not be found in #{file}" unless env_config != nil
+
+      env_config
     end
 
     # We want all ouf our YAML loaded keys to be symbols
@@ -49,6 +52,7 @@ module Opsicle
     end
 
     MissingConfig = Class.new(StandardError)
+    MissingEnvironment = Class.new(StandardError)
 
   end
 end

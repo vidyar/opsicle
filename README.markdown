@@ -1,5 +1,4 @@
-Opsicle, an OpsWorks CLI
----------------------
+#Opsicle, an OpsWorks CLI
 A gem bringing the glory of OpsWorks to your command line.
 
 [![Build Status](https://travis-ci.org/sportngin/opsicle.png?branch=master)](https://travis-ci.org/sportngin/opsicle)

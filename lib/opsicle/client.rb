@@ -16,7 +16,7 @@ module Opsicle
     end
 
     def api_call(command, options={})
-      aws_client.send(command, options)
+      aws_client.public_send(command, options)
     end
 
     def command_options(command, options={})

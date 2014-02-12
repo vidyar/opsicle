@@ -27,6 +27,26 @@ module Opsicle
         subject.execute
       end
 
+      it "should execute ssh with public_ip listings as well as elastic_ip" do
+        subject.stub(:instances) {[
+                                    { hostname: "host1", elastic_ip: "678.678.678.678" },
+                                    { hostname: "host2", public_ip: "987.987.987.987" }
+                                  ]}
+
+        subject.should_receive(:system).with("ssh mrderpyman2014@987.987.987.987")
+        subject.execute
+      end
+
+      it "should execute ssh favoring an elastic_ip over a public_ip if both exist" do
+        subject.stub(:instances) {[
+                                    { hostname: "host1", elastic_ip: "678.678.678.678" },
+                                    { hostname: "host2", public_ip: "987.987.987.987", elastic_ip: "132.132.132.132" }
+                                  ]}
+
+        subject.should_receive(:system).with("ssh mrderpyman2014@132.132.132.132")
+        subject.execute
+      end
+
       it "should execute ssh right away if there is only one Opsworks instance available" do
         subject.stub(:instances) {[
                                     { hostname: "host3", elastic_ip: "456.456.456.456" }

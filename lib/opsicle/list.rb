@@ -10,7 +10,7 @@ module Opsicle
       @client = Client.new(environment)
     end
 
-    def execute(options)
+    def execute(options={})
       stack_ids = get_stacks
       apps = get_apps(stack_ids)
       print(apps)

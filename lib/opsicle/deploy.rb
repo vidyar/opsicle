@@ -9,7 +9,7 @@ module Opsicle
       @client = Client.new(environment)
     end
 
-    def execute
+    def execute(options)
       response = client.run_command('deploy')
       open_deploy(response[:deployment_id])
     end

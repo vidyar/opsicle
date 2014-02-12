@@ -9,7 +9,7 @@ module Opsicle
       @client = Client.new(environment)
     end
 
-    def execute
+    def execute(options)
       if instances.length == 1
         instance_elastic_ip = instances[0][:elastic_ip]
       else

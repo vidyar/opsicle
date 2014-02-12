@@ -9,6 +9,9 @@ program :version, Opsicle::VERSION
 program :description, 'Opsworks Command Line Utility Belt'
 program :help, 'Documentation', 'For documentation and help in setting up your configuration files, '\
                                 'see Opsicle\'s GitHub repo: https://github.com/sportngin/opsicle'
+
+global_option '--verbose'
+
 default_command :help
 
 command :deploy do |c|
@@ -16,25 +19,24 @@ command :deploy do |c|
   c.description = "Deploy your current app to the given OpsWorks stack"
   c.action do |args, options|
     raise ArgumentError, "Environment is required" unless args.first
-    Opsicle::Deploy.new(args.first).execute
+    Opsicle::Deploy.new(args.first).execute(options)
   end
 end
 
 command :list do |c|
   c.syntax = "opsicle list <environment>"
-  c.description = "List all apps the given environment"
+  c.description = "List all apps in the given environment"
   c.action do |args, options|
     raise ArgumentError, "Environment is required" unless args.first
-    Opsicle::List.new(args.first).execute
+    Opsicle::List.new(args.first).execute(options)
   end
+end
 
 command :ssh do |c|
   c.syntax = "opsicle ssh <environment>"
   c.description = "SSH access to instances in the given Opsworks stack"
   c.action do |args, options|
     raise ArgumentError, "Environment is required" unless args.first
-    Opsicle::SSH.new(args.first).execute
+    Opsicle::SSH.new(args.first).execute(options)
   end
-end
-
 end

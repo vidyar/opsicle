@@ -1,8 +1,11 @@
-Opsworks CLI - opsicle
----------------------
+#Opsicle, an OpsWorks CLI
+A gem bringing the glory of OpsWorks to your command line.
 
-Commands
--------------- 
+[![Gem Version](https://badge.fury.io/rb/opsicle.png)](http://badge.fury.io/rb/opsicle)
+[![Build Status](https://travis-ci.org/sportngin/opsicle.png?branch=master)](https://travis-ci.org/sportngin/opsicle)
+
+##Deployment Commands
+
 ```bash
 # Run a basic deploy for the current app
 opsicle deploy staging
@@ -22,8 +25,8 @@ opsicle setup staging
 
 Opsicle accepts a `--verbose` flag to show additional information as commands are run.
 
-Setup an Application to use opsicle
--------
+##Set up an Application to use opsicle
+
 ```yaml
 # your_app_root/.opsicle
 

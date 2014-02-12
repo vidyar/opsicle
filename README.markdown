@@ -20,6 +20,8 @@ opsicle update_custom_cookbooks staging
 opsicle setup staging
 ```
 
+Opsicle accepts a `--verbose` flag to show additional information as commands are run.
+
 Setup an Application to use opsicle
 -------
 ```yaml

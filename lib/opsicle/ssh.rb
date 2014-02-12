@@ -19,7 +19,7 @@ module Opsicle
         end
         choice = ask("? ", Integer) { |q| q.in = 1..instances.length }
 
-        instance_elastic_ip = instances[choice-1][:elastic_ip]
+        instance_ip = instances[choice-1][:elastic_ip] || instances[choice-1][:public_ip]
       end
 
       command = "ssh #{ssh_username}@#{instance_elastic_ip}"

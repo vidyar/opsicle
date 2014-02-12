@@ -1,8 +1,11 @@
-Opsworks CLI - opsicle
+Opsicle, an OpsWorks CLI
 ---------------------
+A gem bringing the glory of OpsWorks to your command line.
 
-Deployment Commands
---------------
+[![Build Status](https://travis-ci.org/sportngin/opsicle.png?branch=master)](https://travis-ci.org/sportngin/opsicle)
+
+##Deployment Commands
+
 ```bash
 # Run a basic deploy for the current app
 opsicle deploy staging
@@ -20,8 +23,8 @@ opsicle update_custom_cookbooks staging
 opsicle setup staging
 ````
 
-Setup an Application to use opsicle
--------
+##Set up an Application to use opsicle
+
 ```yaml
 # your_app_root/.opsicle
 

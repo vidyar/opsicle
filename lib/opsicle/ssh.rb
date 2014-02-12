@@ -23,7 +23,7 @@ module Opsicle
       end
 
       command = "ssh #{ssh_username}@#{instance_elastic_ip}"
-      say "<%= color('Executing shell command: #{command}', YELLOW) %>" if options.verbose
+      say "<%= color('Executing shell command: #{command}', YELLOW) %>" if options[:verbose] == true
       system(command)
     end
 

@@ -19,7 +19,7 @@ command :deploy do |c|
   c.description = "Deploy your current app to the given OpsWorks stack"
   c.action do |args, options|
     raise ArgumentError, "Environment is required" unless args.first
-    Opsicle::Deploy.new(args.first).execute(options)
+    Opsicle::Deploy.new(args.first).execute(options.__hash__)
   end
 end
 
@@ -28,7 +28,7 @@ command :list do |c|
   c.description = "List all apps in the given environment"
   c.action do |args, options|
     raise ArgumentError, "Environment is required" unless args.first
-    Opsicle::List.new(args.first).execute(options)
+    Opsicle::List.new(args.first).execute(options.__hash__)
   end
 end
 
@@ -37,6 +37,6 @@ command :ssh do |c|
   c.description = "SSH access to instances in the given Opsworks stack"
   c.action do |args, options|
     raise ArgumentError, "Environment is required" unless args.first
-    Opsicle::SSH.new(args.first).execute(options)
+    Opsicle::SSH.new(args.first).execute(options.__hash__)
   end
 end

@@ -1,8 +1,8 @@
 Opsworks CLI - opsicle
 ---------------------
 
-Deployment Commands
---------------
+Commands
+-------------- 
 ```bash
 # Run a basic deploy for the current app
 opsicle deploy staging
@@ -10,15 +10,17 @@ opsicle deploy staging
 # Run the deploy for production
 opsicle deploy production
 
-```
+# SSH to a server instance in the given environment stack (ex: staging)
+opsicle ssh staging
 
-```bash
 # Run other opsworks commands
 opsicle update_custom_cookbooks staging
 
 # Trigger the setup event
 opsicle setup staging
-````
+```
+
+Opsicle accepts a `--verbose` flag to show additional information as commands are run.
 
 Setup an Application to use opsicle
 -------

@@ -50,3 +50,12 @@ command 'ssh-key' do |c|
     Opsicle::SSHKey.new(*args).execute(options.__hash__)
   end
 end
+
+command 'deployments' do |c|
+  c.syntax = "opsicle deployments <environment>"
+  c.description = "Show deploy monitor for the given environment's stack"
+  c.action do |args, options|
+    raise ArgumentError, "Environment is required" unless args.first
+    Opsicle::DeployMonitor.new(args.first).execute(options.__hash__)
+  end
+end

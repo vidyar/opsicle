@@ -11,7 +11,7 @@ module Opsicle
     def execute(options={})
       validate!
       update
-      puts "ssh-key updated successfully"
+      say "ssh-key updated successfully"
     end
 
     def validate!

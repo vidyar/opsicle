@@ -7,78 +7,78 @@ module Opsicle
     let(:client) { double(config: double(opsworks_config: {stack_id: "1234"})) }
     let(:api_call) { double }
     before do
-      Client.stub(:new).with('derp').and_return(client)
+      allow(Client).to receive(:new).with('derp').and_return(client)
     end
 
     context "#execute" do
       before do
-        subject.stub(:say) { "What instance do you want, huh?" }
-        subject.stub(:ask).and_return(2)
-        subject.stub(:ssh_username) {"mrderpyman2014"}
+        allow(subject).to receive(:say) { "What instance do you want, huh?" }
+        allow(subject).to receive(:ask).and_return(2)
+        allow(subject).to receive(:ssh_username) {"mrderpyman2014"}
       end
 
       it "should execute ssh with a selected Opsworks instance IP" do
-        subject.stub(:instances) {[
+        allow(subject).to receive(:instances) {[
                                     { hostname: "host1", elastic_ip: "123.123.123.123" },
                                     { hostname: "host2", elastic_ip: "789.789.789.789" }
                                   ]}
 
-        subject.should_receive(:system).with("ssh mrderpyman2014@789.789.789.789")
+        expect(subject).to receive(:system).with("ssh mrderpyman2014@789.789.789.789")
         subject.execute
       end
 
       it "should execute ssh with public_ip listings as well as elastic_ip" do
-        subject.stub(:instances) {[
+        allow(subject).to receive(:instances) {[
                                     { hostname: "host1", elastic_ip: "678.678.678.678" },
                                     { hostname: "host2", public_ip: "987.987.987.987" }
                                   ]}
 
-        subject.should_receive(:system).with("ssh mrderpyman2014@987.987.987.987")
+        expect(subject).to receive(:system).with("ssh mrderpyman2014@987.987.987.987")
         subject.execute
       end
 
       it "should execute ssh favoring an elastic_ip over a public_ip if both exist" do
-        subject.stub(:instances) {[
+        allow(subject).to receive(:instances) {[
                                     { hostname: "host1", elastic_ip: "678.678.678.678" },
                                     { hostname: "host2", public_ip: "987.987.987.987", elastic_ip: "132.132.132.132" }
                                   ]}
 
-        subject.should_receive(:system).with("ssh mrderpyman2014@132.132.132.132")
+        expect(subject).to receive(:system).with("ssh mrderpyman2014@132.132.132.132")
         subject.execute
       end
 
       it "should execute ssh right away if there is only one Opsworks instance available" do
-        subject.stub(:instances) {[
+        allow(subject).to receive(:instances) {[
                                     { hostname: "host3", elastic_ip: "456.456.456.456" }
                                   ]}
 
-        subject.should_receive(:system).with("ssh mrderpyman2014@456.456.456.456")
-        subject.should_not_receive(:ask)
+        expect(subject).to receive(:system).with("ssh mrderpyman2014@456.456.456.456")
+        expect(subject).not_to receive(:ask)
         subject.execute
       end
     end
 
     context "#client" do
       it "generates a new aws client from the given configs" do
-        Client.should_receive(:new).with('derp')
+        expect(Client).to receive(:new).with('derp')
         subject.client
       end
     end
 
     context "#instances" do
       it "makes a describe_instances API call" do
-        client.stub(:api_call).with(:describe_instances, {stack_id: "1234"})
+        expect(client).to receive(:api_call).with(:describe_instances, {stack_id: "1234"})
           .and_return(api_call)
-        api_call.should_receive(:data).and_return(instances: {:foo => :bar})
-        subject.instances.should == {:foo => :bar}
+        expect(api_call).to receive(:data).and_return(instances: {:foo => :bar})
+        expect(subject.instances).to eq({:foo => :bar})
       end
     end
 
     context "#ssh_username" do
       it "makes a describe_my_user_profile API call" do
-        client.stub(:api_call).with(:describe_my_user_profile)
+        allow(client).to receive(:api_call).with(:describe_my_user_profile)
           .and_return({user_profile: {:ssh_username => "captkirk01"}})
-        subject.ssh_username.should == "captkirk01"
+        expect(subject.ssh_username).to eq("captkirk01")
       end
     end
 

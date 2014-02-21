@@ -17,7 +17,7 @@ module Opsicle
         allow(subject).to receive(:ssh_username) {"mrderpyman2014"}
       end
 
-      it "should execute ssh with a selected Opsworks instance IP" do
+      it "executes ssh with a selected Opsworks instance IP" do
         allow(subject).to receive(:instances) {[
                                     { hostname: "host1", elastic_ip: "123.123.123.123" },
                                     { hostname: "host2", elastic_ip: "789.789.789.789" }
@@ -27,7 +27,7 @@ module Opsicle
         subject.execute
       end
 
-      it "should execute ssh with public_ip listings as well as elastic_ip" do
+      it "executes ssh with public_ip listings as well as elastic_ip" do
         allow(subject).to receive(:instances) {[
                                     { hostname: "host1", elastic_ip: "678.678.678.678" },
                                     { hostname: "host2", public_ip: "987.987.987.987" }
@@ -37,7 +37,7 @@ module Opsicle
         subject.execute
       end
 
-      it "should execute ssh favoring an elastic_ip over a public_ip if both exist" do
+      it "executes ssh favoring an elastic_ip over a public_ip if both exist" do
         allow(subject).to receive(:instances) {[
                                     { hostname: "host1", elastic_ip: "678.678.678.678" },
                                     { hostname: "host2", public_ip: "987.987.987.987", elastic_ip: "132.132.132.132" }
@@ -47,7 +47,7 @@ module Opsicle
         subject.execute
       end
 
-      it "should execute ssh right away if there is only one Opsworks instance available" do
+      it "executes ssh right away if there is only one Opsworks instance available" do
         allow(subject).to receive(:instances) {[
                                     { hostname: "host3", elastic_ip: "456.456.456.456" }
                                   ]}

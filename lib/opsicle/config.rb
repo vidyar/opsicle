@@ -1,4 +1,5 @@
 require 'yaml'
+require 'aws-sdk'
 
 module Opsicle
   class Config

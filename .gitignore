@@ -1,3 +1,5 @@
+# ignore .opsicle since this will never be hosted on OpsWorks
+.opsicle*
 *.gem
 *.rbc
 .bundle

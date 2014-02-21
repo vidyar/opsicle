@@ -46,7 +46,7 @@ command 'ssh-key' do |c|
   c.description = "Setup you user ssh key(PUBLIC KEY)"
   c.action do |args, options|
     raise ArgumentError, "Environment is required" unless args.first
-    raise ArgumentError, "ssh public key-file is required" unless args.first
+    raise ArgumentError, "ssh public key-file is required" unless args[1]
     Opsicle::SSHKey.new(*args).execute(options.__hash__)
   end
 end

@@ -40,3 +40,13 @@ command :ssh do |c|
     Opsicle::SSH.new(args.first).execute(options.__hash__)
   end
 end
+
+command 'ssh-key' do |c|
+  c.syntax = "opsicle ssh-key <environment> <key-file>"
+  c.description = "Setup you user ssh key(PUBLIC KEY)"
+  c.action do |args, options|
+    raise ArgumentError, "Environment is required" unless args.first
+    raise ArgumentError, "ssh public key-file is required" unless args.first
+    Opsicle::SSHKey.new(*args).execute(options.__hash__)
+  end
+end

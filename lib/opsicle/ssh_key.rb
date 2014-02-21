@@ -1,4 +1,5 @@
-require 'opsicle/client'
+require 'aws-sdk'
+require_relative 'client'
 
 module Opsicle
   class SSHKey

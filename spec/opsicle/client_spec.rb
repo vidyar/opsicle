@@ -8,16 +8,16 @@ module Opsicle
     let(:config) { double }
     before do
       ow_stub = double
-      config.stub(:opsworks_config).and_return({ stack_id: 'stack', app_id: 'app' })
-      ow_stub.stub(:client).and_return(aws_client)
-      Config.stub(:new).and_return(config)
-      AWS::OpsWorks.stub(:new).and_return(ow_stub)
+      allow(config).to receive(:opsworks_config).and_return({ stack_id: 'stack', app_id: 'app' })
+      allow(ow_stub).to receive(:client).and_return(aws_client)
+      allow(Config).to receive(:new).and_return(config)
+      allow(AWS::OpsWorks).to receive(:new).and_return(ow_stub)
     end
 
     context "#run_command" do
       it "calls out to the aws client with all the config options" do
-        config.should_receive(:configure_aws!)
-        aws_client.should_receive(:create_deployment).with(
+        expect(config).to receive(:configure_aws!)
+        expect(aws_client).to receive(:create_deployment).with(
           hash_including(
             command: { name: 'deploy' },
             stack_id: 'stack',

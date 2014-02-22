@@ -13,9 +13,10 @@ module Opsicle
         allow(Client).to receive(:new).with('derp').and_return(client)
       end
 
-      it "creates a new deployment" do
+      it "shows a table with all of the apps/stacks from OpsWorks" do
         expect(subject).to receive(:get_stacks).and_return(stack_ids)
         expect(subject).to receive(:get_apps).with(stack_ids).and_return(apps)
+        expect(subject).to receive(:print).with(apps)
         subject.execute
       end
     end

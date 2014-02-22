@@ -9,4 +9,5 @@ require "opsicle/deploy"
 require "opsicle/list"
 require "opsicle/ssh"
 require "opsicle/ssh_key"
+require "opsicle/deploy_monitor"
 

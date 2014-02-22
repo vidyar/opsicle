@@ -3,9 +3,10 @@
 # does NOT support <2.1.0.
 # We want to ensure curses (and as a result, opsicle) is available for 1.9.3 - 2.1.0+
 
-# This taken from @tiredpixel and his post on the subject:
+# This is based on @tiredpixel's work and his post on the subject:
 # http://www.tiredpixel.com/2014/01/05/curses-conditional-ruby-gem-installation-within-a-gemspec/
 
+# require 'mkmf'
 require 'rubygems/dependency_installer'
 
 di = Gem::DependencyInstaller.new
@@ -24,12 +25,9 @@ rescue => e
   exit!
 end
 
-# This is another step of using this method, but we don't need to as we use a Rakefile already.
-# Keeping it here for future reference.
+puts "Writing fake Rakefile"
 
-# puts "Writing fake Rakefile"
-
-# # Write fake Rakefile for rake since Makefile isn't used
-# File.open(File.join(File.dirname(__FILE__), 'Rakefile'), 'w') do |f|
-#   f.write("task :default" + $/)
-# end
+# Write fake Rakefile for rake since Makefile isn't used
+File.open(File.join(File.dirname(__FILE__), 'Rakefile'), 'w') do |f|
+  f.write("task :default" + $/)
+end

@@ -1,7 +1,8 @@
 require 'aws-sdk'
 require_relative 'client'
+
 require 'curses'
-include Curses
+include NCurses
 
 module Opsicle
   class DeployMonitor

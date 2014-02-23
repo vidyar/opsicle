@@ -1,11 +1,10 @@
 require 'aws-sdk'
-require_relative 'client'
+require 'opsicle/client'
 
-require 'curses'
-include NCurses
+
 
 module Opsicle
-  class DeployMonitor
+  class Deployments
     attr_reader :client
 
     def initialize(environment)

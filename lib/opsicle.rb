@@ -5,9 +5,11 @@ Signal.trap("INT") do
 end
 
 require "opsicle/version"
-require "opsicle/deploy"
-require "opsicle/list"
-require "opsicle/ssh"
-require "opsicle/ssh_key"
-require "opsicle/deploy_monitor"
+
+# Command classes
+require "opsicle/commands/deploy"
+require "opsicle/commands/list"
+require "opsicle/commands/ssh"
+require "opsicle/commands/ssh_key"
+require "opsicle/commands/deployments"
 

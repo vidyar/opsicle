@@ -1,5 +1,5 @@
 require 'aws-sdk'
-require_relative 'client'
+require 'opsicle/client'
 
 module Opsicle
   class Deploy

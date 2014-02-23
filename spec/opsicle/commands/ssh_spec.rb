@@ -1,5 +1,5 @@
 require "spec_helper"
-require "opsicle/ssh"
+require "opsicle/commands/ssh"
 
 module Opsicle
   describe SSH do

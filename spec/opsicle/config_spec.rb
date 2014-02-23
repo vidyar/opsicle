@@ -1,5 +1,6 @@
 require "spec_helper"
 require "opsicle/config"
+
 module Opsicle
   describe Config do
     subject { Config.new('derp') }

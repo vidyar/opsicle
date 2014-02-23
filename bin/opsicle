@@ -56,6 +56,6 @@ command 'deployments' do |c|
   c.description = "Show deploy monitor for the given environment's stack"
   c.action do |args, options|
     raise ArgumentError, "Environment is required" unless args.first
-    Opsicle::DeployMonitor.new(args.first).execute(options.__hash__)
+    Opsicle::Deployments.new(args.first).execute(options.__hash__)
   end
 end

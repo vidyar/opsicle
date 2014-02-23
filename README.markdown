@@ -6,21 +6,26 @@ A gem bringing the glory of OpsWorks to your command line.
 
 ##Deployment Commands
 
+Run `opsicle help` for a full list of commands and their uses.  
+Some common commands:
+
 ```bash
+
 # Run a basic deploy for the current app
 opsicle deploy staging
 
 # Run the deploy for production
 opsicle deploy production
 
-# SSH to a server instance in the given environment stack (ex: staging)
+# SSH to a server instance in the given environment stack
 opsicle ssh staging
 
-# Run other opsworks commands
-opsicle update_custom_cookbooks staging
+# Set your user SSH key (PUBLIC KEY) for OpsWorks
+opsicle ssh-key staging <key-file>
 
-# Trigger the setup event
-opsicle setup staging
+# Start the deployment monitor for the given environment stack
+opsicle deployments staging
+
 ```
 
 Opsicle accepts a `--verbose` flag to show additional information as commands are run.

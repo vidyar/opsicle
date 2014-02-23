@@ -16,7 +16,7 @@ default_command :help
 
 command :deploy do |c|
   c.syntax = "opsicle deploy <environment>"
-  c.description = "Deploy your current app to the given OpsWorks stack"
+  c.description = "Deploy your current app to the given environment stack"
   c.action do |args, options|
     raise ArgumentError, "Environment is required" unless args.first
     Opsicle::Deploy.new(args.first).execute(options.__hash__)
@@ -25,7 +25,7 @@ end
 
 command :list do |c|
   c.syntax = "opsicle list <environment>"
-  c.description = "List all apps in the given environment"
+  c.description = "List all apps in the given environment stack"
   c.action do |args, options|
     raise ArgumentError, "Environment is required" unless args.first
     Opsicle::List.new(args.first).execute(options.__hash__)
@@ -34,7 +34,7 @@ end
 
 command :ssh do |c|
   c.syntax = "opsicle ssh <environment>"
-  c.description = "SSH access to instances in the given Opsworks stack"
+  c.description = "SSH access to instances in the given environment stack"
   c.action do |args, options|
     raise ArgumentError, "Environment is required" unless args.first
     Opsicle::SSH.new(args.first).execute(options.__hash__)
@@ -43,7 +43,7 @@ end
 
 command 'ssh-key' do |c|
   c.syntax = "opsicle ssh-key <environment> <key-file>"
-  c.description = "Setup you user ssh key(PUBLIC KEY)"
+  c.description = "Set your user SSH key (PUBLIC KEY) for OpsWorks"
   c.action do |args, options|
     raise ArgumentError, "Environment is required" unless args.first
     raise ArgumentError, "ssh public key-file is required" unless args[1]
@@ -53,7 +53,7 @@ end
 
 command 'deployments' do |c|
   c.syntax = "opsicle deployments <environment>"
-  c.description = "Show deploy monitor for the given environment's stack"
+  c.description = "Show deployment monitor for the given environment stack"
   c.action do |args, options|
     raise ArgumentError, "Environment is required" unless args.first
     Opsicle::Deployments.new(args.first).execute(options.__hash__)

@@ -1,6 +1,5 @@
-require 'aws-sdk'
 require 'opsicle/client'
-
+require 'opsicle/deploy_monitor'
 
 
 module Opsicle
@@ -12,7 +11,7 @@ module Opsicle
     end
 
     def execute(options={})
-      puts "execute called"
+      DeployMonitor.new(@client).start
     end
   end
 end

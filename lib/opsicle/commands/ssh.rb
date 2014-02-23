@@ -1,4 +1,3 @@
-require 'aws-sdk'
 require 'opsicle/client'
 
 module Opsicle

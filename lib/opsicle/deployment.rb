@@ -1,5 +1,3 @@
-require 'aws-sdk'
-
 module Opsicle
   class Deployment
 

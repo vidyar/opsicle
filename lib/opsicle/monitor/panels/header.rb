@@ -22,9 +22,9 @@ module Opsicle
             [
               [1, t[:program], nil],
               [2, -> {
-                [:deployments].map do |e|
+                [:deployments, :instances, :apps].map do |e|
                   t[:menu][(e == @panel_main ? :active : :inactive)][e]
-                end.join(" ")
+                end.join("  ")
               }, nil],
               [1, nil, -> { Time.now.strftime("%T %z") }],
             ],

@@ -15,21 +15,23 @@ module Opsicle
           # ]
           s = [
             [ # table header slots
-              [2, "heading1", nil],
-              [1, "heading2", nil],
-              [1, "heading3", nil],
-              [1, "heading4", nil],
-              [1, nil,                  t[:heading][:started_at]],
+              [1, t[:heading][:status], nil],
+              [1, t[:heading][:started_at], nil],
+              [1, t[:heading][:finished_at], nil],
+              [1, t[:heading][:user], nil],
+              [1, t[:heading][:command], nil],
+              [1, t[:heading][:app], nil],
             ],
           ]
 
           (0...(height - 1)).each do |i|
             s << [ # table row slots
-              [2, -> { "something1" },  nil],
-              [1, -> { "something2" }, nil],
-              [1, -> { "something3" }, nil],
-              [1, -> { "something4" },  nil],
-              [1, nil,                                -> { "started at" }],
+              [1, -> { "status" },  nil],
+              [1, -> { "startedat" },  nil],
+              [1, -> { "finishedat" },  nil],
+              [1, -> { "user" }, nil],
+              [1, -> { "command" }, nil],
+              [1, -> { "app" },  nil],
             ]
           end
 

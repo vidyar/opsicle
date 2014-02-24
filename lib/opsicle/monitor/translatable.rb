@@ -7,16 +7,14 @@ module Opsicle
           program: "Opsicle Stack Monitor #{Opsicle::VERSION}",
           menu: {
             inactive: {
-              workers: "Workers",
-              queues: "qUeues",
-              retries: "Retries",
-              schedules: "Scheduled",
+              deployments: "(d)eployments",
+              instances: "(i)nstances",
+              apps: "(a)pps"
             },
             active: {
-              workers: "WORKERS",
-              queues: "QUEUES",
-              retries: "RETRIES",
-              schedules: "SCHEDULED",
+              deployments: "DEPLOYMENTS",
+              instances: "INSTANCES",
+              apps: "APPS"
             },
           },
           redis: {
@@ -37,16 +35,13 @@ module Opsicle
             failed: "failed:",
           },
           heading: {
-            worker: "WORKER",
-            queue: "QUEUE",
-            class: "CLASS",
-            args: "ARGUMENTS",
+            status: "STATUS",
             started_at: "STARTED",
-            size: "SIZE",
-            next_at: "NEXT",
-            count: "COUNT",
-            error: "ERROR",
-            scheduled_at: "SCHEDULED",
+            finished_at: "FINISHED",
+            user: "USER",
+            command: "COMMAND",
+            app: "APP",
+            instances: "INSTANCES"
           }
         }
       end

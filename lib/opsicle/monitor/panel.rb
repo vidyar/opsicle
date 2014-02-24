@@ -6,7 +6,7 @@ module Opsicle
   module Monitor
     class Panel
 
-      include Opsicle::Monitor::Translatable
+      include Monitor::Translatable
 
       attr_reader :height
       attr_reader :width
@@ -30,7 +30,7 @@ module Opsicle
 
         @window = Curses::Window.new(@height, @width, @top, @left)
 
-        # @subpanels = build_subpanels(structure)
+        @subpanels = build_subpanels(structure)
 
         @spies = {} # data sources for #structure
       end
@@ -49,46 +49,46 @@ module Opsicle
 
       private
 
-      # def build_subpanels(structure)
-      #   subpanels = []
+      def build_subpanels(structure)
+        subpanels = []
 
-      #   structure.each_with_index do |row, i|
-      #     next if row.nil? # skip blank rows
+        structure.each_with_index do |row, i|
+          next if row.nil? # skip blank rows
 
-      #     row_cols = row.map { |e| e[0] }.inject(:+)
+          row_cols = row.map { |e| e[0] }.inject(:+)
 
-      #     col_width = (@width / row_cols) + @divider_length
+          col_width = (@width / row_cols) + @divider_length
 
-      #     col_i = 0
+          col_i = 0
 
-      #     row.each_with_index do |(tag_cols, data_l, data_r), row_i|
-      #       first_col = row_i == 0
-      #       last_col  = row_i + 1 == row.length
+          row.each_with_index do |(tag_cols, data_l, data_r), row_i|
+            first_col = row_i == 0
+            last_col  = row_i + 1 == row.length
 
-      #       tag_col_width = if last_col
-      #         @width - ((row_cols - tag_cols) * col_width)
-      #       else
-      #         tag_cols * col_width
-      #       end
+            tag_col_width = if last_col
+              @width - ((row_cols - tag_cols) * col_width)
+            else
+              tag_cols * col_width
+            end
 
-      #       subpanels << Display::Subpanel.new(
-      #         @window,
-      #         1,
-      #         tag_col_width,
-      #         i,
-      #         col_i,
-      #         :data_l    => data_l,
-      #         :data_r    => data_r,
-      #         :divider_l => (@dividers[:left] unless first_col),
-      #         :divider_r => (@dividers[:right] unless last_col)
-      #       )
+            subpanels << Monitor::Subpanel.new(
+              @window,
+              1,
+              tag_col_width,
+              i,
+              col_i,
+              :data_l    => data_l,
+              :data_r    => data_r,
+              :divider_l => (@dividers[:left] unless first_col),
+              :divider_r => (@dividers[:right] unless last_col)
+            )
 
-      #       col_i += tag_col_width
-      #     end
-      #   end
+            col_i += tag_col_width
+          end
+        end
 
-      #   subpanels
-      # end
+        subpanels
+      end
 
     end
   end

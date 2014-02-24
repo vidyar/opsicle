@@ -15,6 +15,7 @@ require "opsicle/commands/ssh_key"
 # Stack Monitor classes
 require "opsicle/monitor/app"
 require "opsicle/monitor/panel"
+require "opsicle/monitor/subpanel"
 require "opsicle/monitor/screen"
 require "opsicle/monitor/translatable"
 

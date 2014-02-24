@@ -121,7 +121,7 @@ module Opsicle
 
           @screen.refresh
 
-          sleep config.interval # go to sleep; could be rudely awoken on quit
+          sleep 1 # go to sleep; could be rudely awoken on quit
         end
       end
     end

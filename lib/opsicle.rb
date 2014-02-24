@@ -11,5 +11,12 @@ require "opsicle/commands/deploy"
 require "opsicle/commands/list"
 require "opsicle/commands/ssh"
 require "opsicle/commands/ssh_key"
-require "opsicle/commands/deployments"
 
+# Stack Monitor classes
+require "opsicle/monitor/app"
+require "opsicle/monitor/panel"
+require "opsicle/monitor/screen"
+require "opsicle/monitor/translatable"
+
+require "opsicle/monitor/panels/deployments"
+require "opsicle/monitor/panels/header"

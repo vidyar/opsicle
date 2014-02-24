@@ -51,11 +51,25 @@ command 'ssh-key' do |c|
   end
 end
 
-command 'deployments' do |c|
-  c.syntax = "opsicle deployments <environment>"
-  c.description = "Show deployment monitor for the given environment stack"
+command 'monitor' do |c|
+  c.syntax = "opsicle monitor <environment>"
+  c.description = "Launch the Opsicle Stack Monitor for the given environment stack"
   c.action do |args, options|
     raise ArgumentError, "Environment is required" unless args.first
-    Opsicle::Deployments.new(args.first).execute(options.__hash__)
+
+    @monitor = Opsicle::Monitor::App.new#(args.first, options.__hash__)
+
+    begin
+      @monitor.start
+    rescue => e
+      warn "#{$0}: #{e}"
+
+      if options[:verbose]
+        raise # reraise for stacktrace
+      else
+        exit 1
+      end
+    end
   end
 end
+alias_command :'top', :'monitor'

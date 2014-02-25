@@ -21,10 +21,10 @@ module Opsicle
               :deployment_id => deployment[:deployment_id],
               :stack_id      => deployment[:stack_id],
               :app_id        => deployment[:app_id],
-              :created_at    => deployment[:created_at],
-              :completed_at  => deployment[:completed_at],
+              :created_at    => format_date(deployment[:created_at]),
+              :completed_at  => format_date(deployment[:completed_at]),
               :duration      => deployment[:duration],
-              :iam_user_arn  => deployment[:iam_user_arn],
+              :user          => user_from_arn(deployment[:iam_user_arn]),
               :comment       => deployment[:comment],
               :command       => deployment[:command][:name],
               :name          => deployment[:name],
@@ -37,6 +37,14 @@ module Opsicle
           end
 
           @data = h
+        end
+
+        def user_from_arn(amazon_resource_name)
+          amazon_resource_name && /(?:user\/)(\S*)/.match(amazon_resource_name)[1]
+        end
+
+        def format_date(date)
+          date ? Time.parse(date).strftime("%T %^a %^b %d") : ""
         end
 
       end

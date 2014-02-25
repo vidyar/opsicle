@@ -17,7 +17,7 @@ module Opsicle
             [ # table header slots
               [1, t[:heading][:status], nil],
               [1, t[:heading][:created_at], nil],
-              [1, t[:heading][:finished_at], nil],
+              [1, t[:heading][:completed_at], nil],
               [1, t[:heading][:user], nil],
               [1, t[:heading][:command], nil],
               [1, t[:heading][:app_id], nil],
@@ -28,7 +28,7 @@ module Opsicle
             s << [ # table row slots
               [1, -> { @spies[:deployments][i][:status] },  nil],
               [1, -> { @spies[:deployments][i][:created_at] },  nil],
-              [1, -> { @spies[:deployments][i][:finished_at] },  nil],
+              [1, -> { @spies[:deployments][i][:completed_at] },  nil],
               [1, -> { @spies[:deployments][i][:user] }, nil],
               [1, -> { @spies[:deployments][i][:command] }, nil],
               [1, -> { @spies[:deployments][i][:app_id] },  nil],

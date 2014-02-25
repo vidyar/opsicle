@@ -19,8 +19,8 @@ module Opsicle
           },
           heading: {
             status: "STATUS",
-            created_at: "STARTED AT",
-            finished_at: "FINISHED AT",
+            created_at: "STARTED",
+            completed_at: "COMPLETED",
             user: "USER",
             command: "COMMAND",
             app_id: "APP ID",

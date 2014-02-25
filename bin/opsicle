@@ -57,19 +57,18 @@ command 'monitor' do |c|
   c.action do |args, options|
     raise ArgumentError, "Environment is required" unless args.first
 
-    @monitor = Opsicle::Monitor::App.new#(args.first, options.__hash__)
+    @monitor = Opsicle::Monitor::App.new(args.first, options.__hash__)
 
     begin
       @monitor.start
     rescue => e
-      warn "#{$0}: #{e}"
+      say "<%= color('Uh oh, an error occurred while starting the Opsicle Stack Monitor.', RED) %>"
+      say "<%= color('Use --trace to view stack trace.', RED) %>"
 
-      if options[:verbose]
-        raise # reraise for stacktrace
-      else
-        exit 1
+      if options.trace
+        raise
       end
     end
   end
 end
-alias_command :'top', :'monitor'
+#alias_command :'top', :'monitor'

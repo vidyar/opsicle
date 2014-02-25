@@ -21,3 +21,6 @@ require "opsicle/monitor/translatable"
 
 require "opsicle/monitor/panels/deployments"
 require "opsicle/monitor/panels/header"
+
+require "opsicle/monitor/spy/dataspyable"
+require "opsicle/monitor/spy/deployments"

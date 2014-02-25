@@ -40,11 +40,13 @@ module Opsicle
       end
 
       def refresh
-        @spies.each { |_, s| s.refresh } # refresh data sources
-
         @subpanels.each(&:refresh) # build changes
 
         @window.refresh # push changes to window
+      end
+
+      def refresh_spies
+        @spies.each { |_, s| s.refresh } # refresh data sources
       end
 
       private

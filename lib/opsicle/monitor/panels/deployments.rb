@@ -6,7 +6,7 @@ module Opsicle
         def initialize(height, width, top, left)
           super(height, width, top, left, structure(height), :divider_r => " ")
 
-          # Include deployment abstraction here?
+          @spies[:deployments] = Monitor::Spy::Deployments.new
         end
 
         def structure(height)
@@ -16,22 +16,22 @@ module Opsicle
           s = [
             [ # table header slots
               [1, t[:heading][:status], nil],
-              [1, t[:heading][:started_at], nil],
+              [1, t[:heading][:created_at], nil],
               [1, t[:heading][:finished_at], nil],
               [1, t[:heading][:user], nil],
               [1, t[:heading][:command], nil],
-              [1, t[:heading][:app], nil],
+              [1, t[:heading][:app_id], nil],
             ],
           ]
 
           (0...(height - 1)).each do |i|
             s << [ # table row slots
-              [1, -> { "status" },  nil],
-              [1, -> { "startedat" },  nil],
-              [1, -> { "finishedat" },  nil],
-              [1, -> { "user" }, nil],
-              [1, -> { "command" }, nil],
-              [1, -> { "app" },  nil],
+              [1, -> { @spies[:deployments][i][:status] },  nil],
+              [1, -> { @spies[:deployments][i][:created_at] },  nil],
+              [1, -> { @spies[:deployments][i][:finished_at] },  nil],
+              [1, -> { @spies[:deployments][i][:user] }, nil],
+              [1, -> { @spies[:deployments][i][:command] }, nil],
+              [1, -> { @spies[:deployments][i][:app_id] },  nil],
             ]
           end
 

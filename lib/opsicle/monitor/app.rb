@@ -3,6 +3,8 @@
 # the work of tiredpixel's sidekiq-spy gem: https://github.com/tiredpixel/sidekiq-spy
 # His help in working with the Ruby curses library has been invaluable - thanks tiredpixel!
 
+require 'opsicle/client'
+
 module Opsicle
   module Monitor
     class App
@@ -10,21 +12,18 @@ module Opsicle
       attr_reader :running
       attr_reader :restarting
 
-      def initialize
+      class << self
+        attr_accessor :client
+      end
+
+      def initialize(environment, options)
         @running    = false
         @restarting = false
         @threads    = {}
+
+        App.client = Client.new(environment)
+        p App.client
       end
-
-      # def config
-      #   @config ||= Config.new
-      # end
-
-      # def configure
-      #   yield config
-
-      #   configure_sidekiq
-      # end
 
       def start
         begin
@@ -36,8 +35,12 @@ module Opsicle
             command_loop # listen for commands
           end
 
-          @threads[:refresh] ||= Thread.new do
-            refresh_loop # refresh frequently
+          @threads[:refresh_screen] ||= Thread.new do
+            refresh_screen_loop # refresh frequently
+          end
+
+          @threads[:refresh_data] ||= Thread.new do
+            refresh_data_loop # refresh not so frequently
           end
 
           @threads.each { |tname, t| t.join }
@@ -103,7 +106,7 @@ module Opsicle
         end
       end
 
-      def refresh_loop
+      def refresh_screen_loop
         while @running do
           next unless @screen # HACK: only certain test scenarios?
 
@@ -122,6 +125,18 @@ module Opsicle
           @screen.refresh
 
           sleep 1 # go to sleep; could be rudely awoken on quit
+        end
+      end
+
+      # This loop is specifically separate from the screen loop
+      # because we don't want to spam OpWorks with API calls every second.
+      def refresh_data_loop
+        while @running do
+          next unless @screen # HACK: only certain test scenarios?
+
+          @screen.refresh_spies
+
+          sleep 10
         end
       end
     end

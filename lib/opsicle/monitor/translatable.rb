@@ -17,30 +17,13 @@ module Opsicle
               apps: "APPS"
             },
           },
-          redis: {
-            connection: "redis:",
-            namespace: "namespace:",
-            version: "redis version:",
-            uptime: "uptime (d):",
-            connections: "connections:",
-            memory: "memory:",
-            memory_peak: "memory peak:",
-          },
-          sidekiq: {
-            busy: "busy:",
-            retries: "retries:",
-            processed: "processed:",
-            enqueued: "enqueued:",
-            scheduled: "scheduled:",
-            failed: "failed:",
-          },
           heading: {
             status: "STATUS",
-            started_at: "STARTED",
-            finished_at: "FINISHED",
+            created_at: "STARTED AT",
+            finished_at: "FINISHED AT",
             user: "USER",
             command: "COMMAND",
-            app: "APP",
+            app_id: "APP ID",
             instances: "INSTANCES"
           }
         }

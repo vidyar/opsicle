@@ -39,6 +39,10 @@ module Opsicle
         @panels.each { |pname, panel| panel.refresh }
       end
 
+      def refresh_spies
+        @panels.each { |pname, panel| panel.refresh_spies }
+      end
+
       def next_key
         Curses.getch
       end

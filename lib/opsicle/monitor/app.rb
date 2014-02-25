@@ -21,8 +21,8 @@ module Opsicle
         @restarting = false
         @threads    = {}
 
+        # Make client with correct configuration available to monitor spies
         App.client = Client.new(environment)
-        p App.client
       end
 
       def start

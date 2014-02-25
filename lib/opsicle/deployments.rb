@@ -10,7 +10,7 @@ module Opsicle
       @deployments = nil if options[:reload]
       @deployment ||= @client.api_call('describe_deployments',
                                        :stack_id => @client.config.opsworks_config[:stack_id]
-                                      )[:deployments].first
+                                      )[:deployments]
     end
     private :deployments
 

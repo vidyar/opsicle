@@ -20,7 +20,7 @@ module Opsicle
           # ]
           [
             [
-              [1, t[:program], nil],
+              [2, t[:program], nil],
               [2, -> {
                 [:deployments, :instances, :apps].map do |e|
                   t[:menu][(e == @panel_main ? :active : :inactive)][e]

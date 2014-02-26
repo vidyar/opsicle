@@ -4,7 +4,7 @@ module Opsicle
 
       def t
         {
-          program: "Opsicle Stack Monitor #{Opsicle::VERSION}",
+          program: "Opsicle Stack Monitor v#{Opsicle::VERSION}",
           menu: {
             inactive: {
               deployments: "(d)eployments",
@@ -22,9 +22,7 @@ module Opsicle
             created_at: "STARTED",
             completed_at: "COMPLETED",
             user: "USER",
-            command: "COMMAND",
-            app_id: "APP ID",
-            instances: "INSTANCES"
+            command: "COMMAND"
           }
         }
       end

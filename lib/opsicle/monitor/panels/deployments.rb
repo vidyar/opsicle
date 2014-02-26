@@ -19,8 +19,7 @@ module Opsicle
               [1, t[:heading][:created_at], nil],
               [1, t[:heading][:completed_at], nil],
               [1, t[:heading][:user], nil],
-              [1, t[:heading][:command], nil],
-              [1, t[:heading][:app_id], nil],
+              [1, t[:heading][:command], nil]
             ],
           ]
 
@@ -30,8 +29,7 @@ module Opsicle
               [1, -> { @spies[:deployments][i][:created_at] },  nil],
               [1, -> { @spies[:deployments][i][:completed_at] },  nil],
               [1, -> { @spies[:deployments][i][:user] }, nil],
-              [1, -> { @spies[:deployments][i][:command] }, nil],
-              [1, -> { @spies[:deployments][i][:app_id] },  nil],
+              [1, -> { @spies[:deployments][i][:command] }, nil]
             ]
           end
 

@@ -44,7 +44,7 @@ module Opsicle
         end
 
         def format_date(date)
-          date ? Time.parse(date).strftime("%T %^a %^b %d") : ""
+          date ? Time.parse(date).strftime("%T %m/%d") : ""
         end
 
       end

@@ -1,5 +1,6 @@
 require 'time'
 require 'opsicle/monitor/panel'
+require 'opsicle/stack'
 
 module Opsicle
   module Monitor
@@ -9,6 +10,8 @@ module Opsicle
         attr_accessor :panel_main
 
         def initialize(height, width, top, left)
+          @stack = Opsicle::Stack.new(App.client)
+
           super(height, width, top, left, structure, :divider_r => " ")
         end
 
@@ -28,6 +31,14 @@ module Opsicle
               }, nil],
               [1, nil, -> { Time.now.strftime("%T %z") }],
             ],
+            [
+              [1, nil, nil],
+            ],
+            [
+              [1, "Stack name:", @stack.name],
+              [1, nil, nil],
+              [1, nil, nil]
+            ]
           ]
         end
 

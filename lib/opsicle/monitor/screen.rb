@@ -17,7 +17,7 @@ module Opsicle
         @width  = term_width
 
         @panels = { # attach panels, defining height, width, top, left
-          :header        => Monitor::Panels::Header.new(      1, @width, 0, 0),
+          :header        => Monitor::Panels::Header.new(      6, @width, 0, 0),
         }
 
         self.panel_main = :deployments
@@ -62,7 +62,7 @@ module Opsicle
 
         @panels[:main] = case pname
         when :deployments
-          Monitor::Panels::Deployments.new((@height - 8), @width, 8, 0)
+          Monitor::Panels::Deployments.new((@height - 6), @width, 6, 0)
         end
       end
 

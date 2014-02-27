@@ -62,7 +62,9 @@ module Opsicle
 
         @panels[:main] = case pname
         when :deployments
-          Monitor::Panels::Deployments.new((@height - 6), @width, 6, 0)
+          Monitor::Panels::Deployments.new((@height - 4), @width, 4, 0)
+        when :help
+          Monitor::Panels::Help.new((@height - 4), @width, 4, 0)
         end
       end
 

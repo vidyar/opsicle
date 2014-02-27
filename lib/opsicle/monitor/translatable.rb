@@ -9,12 +9,14 @@ module Opsicle
             inactive: {
               deployments: "(d)eployments",
               instances: "(i)nstances",
-              apps: "(a)pps"
+              apps: "(a)pps",
+              help: "(h)elp"
             },
             active: {
               deployments: "DEPLOYMENTS",
               instances: "INSTANCES",
-              apps: "APPS"
+              apps: "APPS",
+              help: "HELP"
             },
           },
           heading: {

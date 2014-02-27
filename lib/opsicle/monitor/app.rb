@@ -9,6 +9,7 @@ module Opsicle
   module Monitor
     class App
       API_POLLING_INTERVAL = 10
+      SCREEN_REFRESH_INTERVAL = 5
 
       attr_reader :running
       attr_reader :restarting
@@ -62,9 +63,13 @@ module Opsicle
 
       def do_command(key)
         case key
-        when 'q' # Q is very natural for Quit; Queues comes second to this
+        when 'q' # Quit
           stop
-        when 'd'
+        when 'h' # Help screen
+          @screen.panel_main = :help
+        when 'b' # Open browser window
+          open_opsworks_browser
+        when 'd' # Deployments
           @screen.panel_main = :deployments
         end
 
@@ -125,7 +130,7 @@ module Opsicle
 
           @screen.refresh
 
-          sleep 1 # go to sleep; could be rudely awoken on quit
+          sleep SCREEN_REFRESH_INTERVAL # go to sleep; could be rudely awoken on quit
         end
       end
 
@@ -139,6 +144,10 @@ module Opsicle
 
           sleep API_POLLING_INTERVAL
         end
+      end
+
+      def open_opsworks_browser
+        %x(open 'https://console.aws.amazon.com/opsworks/home?#/stack/#{App.client.config.opsworks_config[:stack_id]}')
       end
     end
   end

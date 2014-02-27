@@ -26,7 +26,10 @@ describe Opsicle::Monitor::App do
       :missized? => nil
     )
 
+    @client = double
+
     allow(Opsicle::Monitor::Screen).to receive(:new).and_return(@screen)
+    allow(Opsicle::Client).to receive(:new).and_return(@client)
 
     @app = Opsicle::Monitor::App.new("staging", {})
   end

@@ -78,16 +78,6 @@ module Opsicle
 
       private
 
-      # def configure_sidekiq
-      #   Sidekiq.configure_client do |sidekiq_config|
-      #     sidekiq_config.logger = nil
-      #     sidekiq_config.redis = {
-      #       :url       => config.url,
-      #       :namespace => config.namespace,
-      #     }
-      #   end
-      # end
-
       def setup
         @screen = Monitor::Screen.new
       end

@@ -8,7 +8,7 @@ module Opsicle
     def deployments(options={})
       # Only call the API again if you need to
       @deployments = nil if options[:reload]
-      @deployment ||= @client.api_call('describe_deployments',
+      @deployments ||= @client.api_call('describe_deployments',
                                        :stack_id => @client.config.opsworks_config[:stack_id]
                                       )[:deployments]
     end

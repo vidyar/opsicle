@@ -8,6 +8,7 @@ require 'opsicle/client'
 module Opsicle
   module Monitor
     class App
+      API_POLLING_INTERVAL = 10
 
       attr_reader :running
       attr_reader :restarting
@@ -136,7 +137,7 @@ module Opsicle
 
           @screen.refresh_spies
 
-          sleep 10
+          sleep API_POLLING_INTERVAL
         end
       end
     end

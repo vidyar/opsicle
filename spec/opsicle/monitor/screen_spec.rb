@@ -11,6 +11,7 @@ describe Opsicle::Monitor::Screen do
     Object.send(:remove_const, :Curses) if Object.constants.include?(:Curses)
 
     Curses = double(
+      "Curses",
       :init_screen  => nil,
       :close_screen => nil,
       :nl           => nil,
@@ -23,6 +24,7 @@ describe Opsicle::Monitor::Screen do
     )
 
     @panel = double(
+      "@panel",
       :close       => nil,
       :panel_main= => nil
     )

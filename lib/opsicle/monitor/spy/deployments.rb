@@ -8,7 +8,7 @@ module Opsicle
         include Spy::Dataspyable
 
         def initialize
-          @deployments = Opsicle::Deployments.new(App.client)
+          @deployments = Opsicle::Deployments.new(Opsicle::Monitor::App.client)
           refresh
         end
 
@@ -40,7 +40,7 @@ module Opsicle
         end
 
         def user_from_arn(amazon_resource_name)
-          amazon_resource_name && /(?:user\/)(\S*)/.match(amazon_resource_name)[1]
+          /(?::user\/)?([^:\n]+)$/.match(amazon_resource_name).to_a[1].to_s
         end
 
         def format_date(date)

@@ -5,6 +5,6 @@ Signal.trap("INT") do
 end
 
 require "opsicle/version"
-require "opsicle/commands/commands"
-require "opsicle/monitor/monitor"
+require "opsicle/commands"
+require "opsicle/monitor"
 

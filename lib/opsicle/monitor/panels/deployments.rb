@@ -15,11 +15,11 @@ module Opsicle
           # ]
           s = [
             [ # table header slots
-              [1, t[:heading][:status], nil],
-              [1, t[:heading][:created_at], nil],
-              [1, t[:heading][:completed_at], nil],
-              [1, t[:heading][:user], nil],
-              [1, t[:heading][:command], nil]
+              [1, translate[:heading][:status], nil],
+              [1, translate[:heading][:created_at], nil],
+              [1, translate[:heading][:completed_at], nil],
+              [1, translate[:heading][:user], nil],
+              [1, translate[:heading][:command], nil]
             ],
           ]
 

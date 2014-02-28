@@ -2,7 +2,7 @@ module Opsicle
   module Monitor
     module Translatable
 
-      def t
+      def translate
         {
           program: "Opsicle Stack Monitor v#{Opsicle::VERSION}",
           menu: {

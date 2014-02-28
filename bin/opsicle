@@ -71,4 +71,4 @@ command 'monitor' do |c|
     end
   end
 end
-#alias_command :'top', :'monitor'
+alias_command :'top', :'monitor'

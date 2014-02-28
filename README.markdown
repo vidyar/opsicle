@@ -71,8 +71,8 @@ opsicle ssh staging
 # Set your user SSH key (PUBLIC KEY) for OpsWorks
 opsicle ssh-key staging <key-file>
 
-# Start the deployment monitor for the given environment stack
-opsicle deployments staging
+# Launch the Opsicle Stack Monitor for the given environment stack
+opsicle monitor staging
 
 ```
 

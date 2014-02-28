@@ -1,5 +1,3 @@
-require 'opsicle/client'
-
 module Opsicle
   class Deploy
     attr_reader :client

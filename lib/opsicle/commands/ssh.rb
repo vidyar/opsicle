@@ -1,5 +1,3 @@
-require 'opsicle/client'
-
 module Opsicle
   class SSH
     attr_reader :client

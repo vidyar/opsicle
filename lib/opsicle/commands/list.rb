@@ -1,5 +1,4 @@
 require 'terminal-table'
-require 'opsicle/client'
 
 module Opsicle
   class List

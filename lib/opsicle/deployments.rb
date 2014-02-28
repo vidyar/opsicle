@@ -5,6 +5,10 @@ module Opsicle
       @client = client
     end
 
+    def data
+      deployments(reload: true)
+    end
+
     def deployments(options={})
       # Only call the API again if you need to
       @deployments = nil if options[:reload]
@@ -13,10 +17,6 @@ module Opsicle
                                       )[:deployments]
     end
     private :deployments
-
-    def data
-      deployments(reload: true)
-    end
 
   end
 end

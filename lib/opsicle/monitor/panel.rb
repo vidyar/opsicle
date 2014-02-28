@@ -1,5 +1,6 @@
 require 'curses'
 require 'opsicle/monitor/translatable'
+require 'opsicle/monitor/subpanel'
 
 
 module Opsicle

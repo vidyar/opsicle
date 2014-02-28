@@ -8,9 +8,8 @@ require "opsicle/monitor/panels/help"
 describe Opsicle::Monitor::Screen do
 
   before do
-    Object.send(:remove_const, :Curses) if Object.constants.include?(:Curses)
 
-    Curses = double(
+    curses_test = double(
       "Curses",
       :init_screen  => nil,
       :close_screen => nil,
@@ -22,6 +21,7 @@ describe Opsicle::Monitor::Screen do
       :lines        => 24,
       :cols         => 80
     )
+    stub_const "Curses", curses_test
 
     @panel = double(
       "@panel",

@@ -5,23 +5,6 @@ Signal.trap("INT") do
 end
 
 require "opsicle/version"
+require "opsicle/commands/commands"
+require "opsicle/monitor/monitor"
 
-# Command classes
-require "opsicle/commands/deploy"
-require "opsicle/commands/list"
-require "opsicle/commands/ssh"
-require "opsicle/commands/ssh_key"
-
-# Stack Monitor classes
-require "opsicle/monitor/app"
-require "opsicle/monitor/panel"
-require "opsicle/monitor/subpanel"
-require "opsicle/monitor/screen"
-require "opsicle/monitor/translatable"
-
-require "opsicle/monitor/panels/header"
-require "opsicle/monitor/panels/deployments"
-require "opsicle/monitor/panels/help"
-
-require "opsicle/monitor/spy/dataspyable"
-require "opsicle/monitor/spy/deployments"

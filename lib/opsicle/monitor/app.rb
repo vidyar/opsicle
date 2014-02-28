@@ -62,21 +62,22 @@ module Opsicle
       end
 
       def do_command(key)
-        case key
-        when 'q' # Quit
-          stop
-        when 'h' # Help screen
-          @screen.panel_main = :help
-        when 'b' # Open browser window
-          open_opsworks_browser
-        when 'd' # Deployments
-          @screen.panel_main = :deployments
-        end
+        command = { q: :stop,
+                    h: [:set_screen, :help],
+                    b: :open_opsworks_browser,
+                    d: [:set_screen, :deployments] }[key.to_sym]
+        command ||= :invalid_input
+
+        send *command unless command == :invalid_input
 
         wakey_wakey # wake threads for immediate response
       end
 
       private
+
+      def set_screen(screen)
+        @screen.panel_main = screen
+      end
 
       def setup
         @screen = Monitor::Screen.new

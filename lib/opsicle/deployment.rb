@@ -6,15 +6,6 @@ module Opsicle
       @client = client
     end
 
-    def deployment(options={})
-      # Only call the API again if you need to
-      @deployment = nil if options[:reload]
-      @deployment ||= @client.api_call('describe_deployments',
-                                       :deployment_ids => [@deployment_id]
-                                      )[:deployments].first
-    end
-    private :deployment
-
     def deployment_id
       deployment[:deployment_id]
     end
@@ -51,17 +42,18 @@ module Opsicle
       deployment[:instance_ids]
     end
 
-    def running?
-      status == 'running'
+    %w(running successful failed).each do |status_name|
+      define_method("#{status_name}?") { status == status_name }
     end
 
-    def successful?
-      status == 'successful'
+    def deployment(options={})
+      # Only call the API again if you need to
+      @deployment = nil if options[:reload]
+      @deployment ||= @client.api_call('describe_deployments',
+                                       :deployment_ids => [@deployment_id]
+                                      )[:deployments].first
     end
-
-    def failed?
-      status == 'failed'
-    end
+    private :deployment
 
   end
 end

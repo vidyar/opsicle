@@ -54,7 +54,9 @@ module Opsicle
       def stop
         @running = false
         @screen.close
-        @screen = nil # Ruby curses lib doesn't have closed?(), so we set to nil
+        @screen = nil # Ruby curses lib doesn't have closed?(), so we set to nil, just in case
+
+        exit 0
 
         wakey_wakey # for Ctrl+C route; #do_command route already wakes threads
       end

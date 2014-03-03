@@ -20,7 +20,7 @@ module Opsicle
       instance_ip = instances[choice-1][:elastic_ip] || instances[choice-1][:public_ip]
 
       command = "ssh #{ssh_username}@#{instance_ip}"
-      say "<%= color('Executing shell command: #{command}', YELLOW) %>" if options[:verbose] == true
+      say "<%= color('Executing shell command: #{command}', YELLOW) %>" if $verbose
       system(command)
     end
 

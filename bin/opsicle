@@ -10,7 +10,16 @@ program :description, 'Opsworks Command Line Utility Belt'
 program :help, 'Documentation', 'For documentation and help in setting up your configuration files, '\
                                 'see Opsicle\'s GitHub repo: https://github.com/sportngin/opsicle'
 
-global_option '--verbose'
+global_option('--verbose'){ $verbose = true }
+
+if ENV['DEBUG']
+  always_trace!
+  $debug = true
+else
+  never_trace!
+end
+$verbose = true  if ENV['VERBOSE']
+
 
 default_command :help
 

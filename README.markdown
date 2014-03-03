@@ -22,8 +22,7 @@ gem 'opsicle'
 
 (Alternatively, `gem 'opsicle'; gem 'curses' unless RUBY_VERSION < "2.1.0"`)
 
-**Why the extra `curses` gem for Ruby 2.1.0+?**
-
+**Why the extra `curses` gem for Ruby 2.1.0+?**  
 Opsicle uses [curses](http://en.wikipedia.org/wiki/Curses_(programming_library)).
 Ruby's library to interface with curses was [removed from stdlib in Ruby 2.1.0](https://bugs.ruby-lang.org/issues/8584).
 [The new curses gem](https://github.com/ruby/curses) is not backwards compatible, so in an effort to keep this gem
@@ -57,8 +56,7 @@ production:
 
 ## Using Opsicle
 
-Run `opsicle help` for a full list of commands and their uses.
-
+Run `opsicle help` for a full list of commands and their uses.  
 Some common commands:
 
 ### Deployments

@@ -12,7 +12,9 @@ module Opsicle
 
       if options[:browser]
         open_deploy(response[:deployment_id])
-      else
+      end
+
+      if options[:monitor]
         @monitor = Opsicle::Monitor::App.new(@environment, options)
 
         begin

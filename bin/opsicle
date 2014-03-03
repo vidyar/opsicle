@@ -17,7 +17,8 @@ default_command :help
 command :deploy do |c|
   c.syntax = "opsicle deploy <environment>"
   c.description = "Deploy your current app to the given environment stack"
-  c.option "--browser", "Open OpsWorks deployments screen instead of Opsicle Stack Monitor"
+  c.option "--browser", "Open the OpsWorks deployments screen for this stack on deploy"
+  c.option "--monitor", "Open the Opsicle Stack Monitor for this stack on deploy"
   c.action do |args, options|
     raise ArgumentError, "Environment is required" unless args.first
     Opsicle::Deploy.new(args.first).execute(options.__hash__)

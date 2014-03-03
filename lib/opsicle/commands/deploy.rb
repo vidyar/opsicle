@@ -3,12 +3,29 @@ module Opsicle
     attr_reader :client
 
     def initialize(environment)
+      @environment = environment
       @client = Client.new(environment)
     end
 
     def execute(options={})
       response = client.run_command('deploy')
-      open_deploy(response[:deployment_id])
+
+      if options[:browser]
+        open_deploy(response[:deployment_id])
+      else
+        @monitor = Opsicle::Monitor::App.new(@environment, options)
+
+        begin
+          @monitor.start
+        rescue => e
+          say "<%= color('Uh oh, an error occurred while starting the Opsicle Stack Monitor.', RED) %>"
+          say "<%= color('Use --trace to view stack trace.', RED) %>"
+
+          if options.trace
+            raise
+          end
+        end
+      end
     end
 
     def open_deploy(deployment_id)

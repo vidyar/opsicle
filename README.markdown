@@ -57,6 +57,7 @@ production:
 Run `opsicle help` for a full list of commands and their uses.  
 Some common commands:
 
+### Deployments
 ```bash
 
 # Run a basic deploy for the current app
@@ -65,12 +66,22 @@ opsicle deploy staging
 # Run the deploy for production
 opsicle deploy production
 
+```
+You may also use `-m or --monitor` to open the Opsicle Stack Monitor, or
+`-b or --browser` to open the OpsWorks deployments screen for that app when deploying.
+
+### SSH
+```bash
 # SSH to a server instance in the given environment stack
 opsicle ssh staging
 
 # Set your user SSH key (PUBLIC KEY) for OpsWorks
 opsicle ssh-key staging <key-file>
 
+```
+
+### Stack Monitor
+```bash
 # Launch the Opsicle Stack Monitor for the given environment stack
 opsicle monitor staging
 

@@ -5,22 +5,22 @@ A gem bringing the glory of OpsWorks to your command line.
 [![Build Status](https://travis-ci.org/sportngin/opsicle.png?branch=master)](https://travis-ci.org/sportngin/opsicle)
 
 ## Installation
-Add this line to your project's Gemfile:  
+Add this line to your project's Gemfile:
 
-**For Ruby >=2.1.0**  
+**For Ruby >=2.1.0**
 ```ruby
 gem 'opsicle'
 gem 'curses'
 ```
 
-**For Ruby <2.1.0, 1.9.3**  
+**For Ruby <2.1.0, 1.9.3**
 ```ruby
 gem 'opsicle'
 ```
 
 (Alternatively, `gem 'opsicle'; gem 'curses' unless RUBY_VERSION < "2.1.0"`)
 
-**Why the extra `curses` gem for Ruby 2.1.0+?**  
+**Why the extra `curses` gem for Ruby 2.1.0+?**
 Opsicle uses [curses](http://en.wikipedia.org/wiki/Curses_(programming_library)).
 Ruby's library to interface with curses was [removed from stdlib in Ruby 2.1.0](https://bugs.ruby-lang.org/issues/8584).
 [The new curses gem](https://github.com/ruby/curses) is not backwards compatible, so in an effort to keep this gem
@@ -54,7 +54,7 @@ production:
 
 ## Using Opsicle
 
-Run `opsicle help` for a full list of commands and their uses.  
+Run `opsicle help` for a full list of commands and their uses.
 Some common commands:
 
 ```bash
@@ -76,4 +76,5 @@ opsicle monitor staging
 
 ```
 
-Opsicle accepts a `--verbose` flag to show additional information as commands are run.
+Opsicle accepts a `--verbose` flag or the VERBOSE environment variable to show additional information as commands are run.
+Opsicle accepts a DEBUG environment variable to show additional logging such as stack traces for failed commands.

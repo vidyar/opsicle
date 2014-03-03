@@ -1,6 +1,4 @@
-require 'aws-sdk'
 require 'terminal-table'
-require_relative 'client'
 
 module Opsicle
   class List

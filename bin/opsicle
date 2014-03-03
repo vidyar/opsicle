@@ -25,7 +25,8 @@ default_command :help
 
 command :deploy do |c|
   c.syntax = "opsicle deploy <environment>"
-  c.description = "Deploy your current app to the given OpsWorks stack"
+  c.description = "Deploy your current app to the given environment stack"
+  c.option "--browser", "Open OpsWorks deployments screen instead of Opsicle Stack Monitor"
   c.action do |args, options|
     raise ArgumentError, "Environment is required" unless args.first
     Opsicle::Deploy.new(args.first).execute(options.__hash__)
@@ -34,7 +35,7 @@ end
 
 command :list do |c|
   c.syntax = "opsicle list <environment>"
-  c.description = "List all apps in the given environment"
+  c.description = "List all apps in the given environment stack"
   c.action do |args, options|
     raise ArgumentError, "Environment is required" unless args.first
     Opsicle::List.new(args.first).execute(options.__hash__)
@@ -43,7 +44,7 @@ end
 
 command :ssh do |c|
   c.syntax = "opsicle ssh <environment>"
-  c.description = "SSH access to instances in the given Opsworks stack"
+  c.description = "SSH access to instances in the given environment stack"
   c.action do |args, options|
     raise ArgumentError, "Environment is required" unless args.first
     Opsicle::SSH.new(args.first).execute(options.__hash__)
@@ -52,10 +53,32 @@ end
 
 command 'ssh-key' do |c|
   c.syntax = "opsicle ssh-key <environment> <key-file>"
-  c.description = "Setup you user ssh key(PUBLIC KEY)"
+  c.description = "Set your user SSH key (PUBLIC KEY) for OpsWorks"
   c.action do |args, options|
     raise ArgumentError, "Environment is required" unless args.first
     raise ArgumentError, "ssh public key-file is required" unless args[1]
     Opsicle::SSHKey.new(*args).execute(options.__hash__)
   end
 end
+
+command 'monitor' do |c|
+  c.syntax = "opsicle monitor <environment>"
+  c.description = "Launch the Opsicle Stack Monitor for the given environment stack"
+  c.action do |args, options|
+    raise ArgumentError, "Environment is required" unless args.first
+
+    @monitor = Opsicle::Monitor::App.new(args.first, options.__hash__)
+
+    begin
+      @monitor.start
+    rescue => e
+      say "<%= color('Uh oh, an error occurred while starting the Opsicle Stack Monitor.', RED) %>"
+      say "<%= color('Use --trace to view stack trace.', RED) %>"
+
+      if options.trace
+        raise
+      end
+    end
+  end
+end
+alias_command :'top', :'monitor'

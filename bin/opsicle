@@ -11,13 +11,14 @@ program :help, 'Documentation', 'For documentation and help in setting up your c
                                 'see Opsicle\'s GitHub repo: https://github.com/sportngin/opsicle'
 
 global_option('--verbose'){ $verbose = true }
+
 if ENV['DEBUG']
   always_trace!
-  $debug = 1
+  $debug = true
 else
   never_trace!
 end
-$verbose = 1  if ENV['VERBOSE']
+$verbose = true  if ENV['VERBOSE']
 
 
 default_command :help

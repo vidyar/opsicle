@@ -1,5 +1,5 @@
 require "spec_helper"
-require "opsicle/ssh_key"
+require "opsicle/commands/ssh_key"
 
 module Opsicle
   describe SSHKey do

@@ -1,5 +1,5 @@
 require "spec_helper"
-require "opsicle/deploy"
+require "opsicle/commands/deploy"
 
 module Opsicle
   describe Deploy do
